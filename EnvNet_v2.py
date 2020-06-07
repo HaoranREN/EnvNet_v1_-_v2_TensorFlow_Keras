@@ -1,23 +1,21 @@
 '''
-File: EnvNet_v1.py
+File: EnvNet_v2.py
 Author: Haoran Ren
 Email: rhaoran1@umbc.edu
 Github: https://github.com/HaoranREN/EnvNet_v1_v2_TensorFlow_Keras
 
-An implementation of EnvNet v1 in Python with TensorFlow
+An implementation of EnvNet v2 in Python with TensorFlow
 Train on ESC-50 dataset
 
 This file contains the main function
 
-EnvNet_v1:
+EnvNet_v2:
 
 @inproceedings{tokozume2017learning,
-  title={Learning environmental sounds with end-to-end convolutional neural network},
-  author={Tokozume, Yuji and Harada, Tatsuya},
-  booktitle={2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
-  pages={2721--2725},
-  year={2017},
-  organization={IEEE}
+  title={Learning from between-class examples for deep sound recognition},
+  author={Tokozume, Yuji and Ushiku, Yoshitaka and Harada, Tatsuya},
+  journal={arXiv preprint arXiv:1711.10282},
+  year={2017}
 }
 
 ESC-50:
@@ -33,7 +31,7 @@ https://github.com/karolpiczak/ESC-50
 }
 '''
 
-import EnvNet_v1_data_utils as utils
+import EnvNet_v2_data_utils as utils
 
 import numpy as np
 
@@ -53,30 +51,58 @@ def build_model(class_num):
     
     model = Sequential()
     
-    model.add(InputLayer(input_shape = (24000,1)))
+    model.add(InputLayer(input_shape = (66650,1)))
     
-    model.add(Conv1D(filters=40, kernel_size=8, padding = 'same'))
+    model.add(Conv1D(filters=32, kernel_size=64, strides = 2))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
-    model.add(Conv1D(filters=40, kernel_size=8, padding = 'same'))
+    model.add(Conv1D(filters=64, kernel_size=16, strides = 2))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
-    model.add(MaxPooling1D(pool_size=160))
-    model.add(Reshape((150,40,1)))
+    model.add(MaxPooling1D(pool_size=64))
+    model.add(Reshape((260,64,1)))
     
-    model.add(Conv2D(filters=50, kernel_size=(13,8)))
+    model.add(Conv2D(filters=32, kernel_size=(8,8)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
-    model.add(MaxPooling2D(pool_size=(3,3)))
+    model.add(Conv2D(filters=32, kernel_size=(8,8)))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    
+    model.add(MaxPooling2D(pool_size=(3,5)))
 
-    model.add(Conv2D(filters=50, kernel_size=(5,1)))
+    model.add(Conv2D(filters=64, kernel_size=(4,1)))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     
-    model.add(MaxPooling2D(pool_size=(3,1)))
+    model.add(Conv2D(filters=64, kernel_size=(4,1)))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    
+    model.add(MaxPooling2D(pool_size=(2,1)))
+    
+    model.add(Conv2D(filters=128, kernel_size=(2,1)))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    
+    model.add(Conv2D(filters=128, kernel_size=(2,1)))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    
+    model.add(MaxPooling2D(pool_size=(2,1)))
+    
+    model.add(Conv2D(filters=256, kernel_size=(2,1)))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    
+    model.add(Conv2D(filters=256, kernel_size=(2,1)))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    
+    model.add(MaxPooling2D(pool_size=(2,1)))
 
     model.add(Flatten())
     

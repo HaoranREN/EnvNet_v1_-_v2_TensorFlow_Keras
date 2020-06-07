@@ -1,23 +1,21 @@
 '''
-File: EnvNet_v1_data_utils.py
+File: EnvNet_v2_data_utils.py
 Author: Haoran Ren
 Email: rhaoran1@umbc.edu
 Github: https://github.com/HaoranREN/EnvNet_v1_v2_TensorFlow_Keras
 
-An implementation of EnvNet v1 in Python with TensorFlow
+An implementation of EnvNet v2 in Python with TensorFlow
 Train on ESC-50 dataset
 
 This file contains data preprocessing functions
 
-EnvNet_v1:
+EnvNet_v2:
 
 @inproceedings{tokozume2017learning,
-  title={Learning environmental sounds with end-to-end convolutional neural network},
-  author={Tokozume, Yuji and Harada, Tatsuya},
-  booktitle={2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
-  pages={2721--2725},
-  year={2017},
-  organization={IEEE}
+  title={Learning from between-class examples for deep sound recognition},
+  author={Tokozume, Yuji and Ushiku, Yoshitaka and Harada, Tatsuya},
+  journal={arXiv preprint arXiv:1711.10282},
+  year={2017}
 }
 
 ESC-50:
@@ -45,8 +43,8 @@ from tensorflow.keras.utils import Sequence
 DATA_DIR = 'path_to_ESC_50'
 AUDIO_DIR = 'path_to_ESC_50/audio/'
 
-AUDIO_SR = 16000        # sampling rate
-AUDIO_WINDOW = 24000    # audio window size
+AUDIO_SR = 44100        # sampling rate
+AUDIO_WINDOW = 66650    # audio window size
 WINDOW_STRIDE = 3200    # windowsing stride
 
 CLASS_NUM = 50
