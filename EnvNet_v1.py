@@ -2,9 +2,9 @@
 File: EnvNet_v1.py
 Author: Haoran Ren
 Email: rhaoran1@umbc.edu
-Github: https://github.com/HaoranREN/EnvNet_v2_TensorFlow_Keras
+Github: https://github.com/HaoranREN/EnvNet_v1_v2_TensorFlow_Keras
 
-An implementation of EnvNet v2 in Python with TensorFlow
+An implementation of EnvNet v1 in Python with TensorFlow
 Trained on ESC-50 dataset
 
 This file contains the main function
