@@ -7,7 +7,7 @@ Github: https://github.com/HaoranREN/EnvNet_v1_v2_TensorFlow_Keras
 An implementation of EnvNet v2 in Python with TensorFlow
 Train on ESC-50 dataset
 
-This file contains the main function
+This file contains the model description and train/val/test methods
 
 EnvNet_v2:
 
